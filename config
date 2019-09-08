@@ -31,6 +31,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+c exec eclipse
 bindsym $mod+n exec nautilus
 
+
 # kill focused window
 bindsym $mod+q kill
 
@@ -87,28 +88,28 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # switch to workspace
-bindsym $mod+1 workspace 🤖
-bindsym $mod+2 workspace 🌐
-bindsym $mod+3 workspace 👾
-bindsym $mod+4 workspace 📁
+bindsym $mod+1 workspace 1:
+bindsym $mod+2 workspace 2:
+bindsym $mod+3 workspace 3:
+bindsym $mod+4 workspace 4:
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 😎
+bindsym $mod+0 workspace 10:
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 🤖
-bindsym $mod+Shift+2 move container to workspace 🌐
-bindsym $mod+Shift+3 move container to workspace 👾
-bindsym $mod+Shift+4 move container to workspace 📁
+bindsym $mod+Shift+1 move container to workspace 1:
+bindsym $mod+Shift+2 move container to workspace 2:
+bindsym $mod+Shift+3 move container to workspace 3:
+bindsym $mod+Shift+4 move container to workspace 4:
 bindsym $mod+Shift+5 move container to workspace 5
 bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 1😎
+bindsym $mod+Shift+0 move container to workspace 10:
 
 
 
@@ -135,6 +136,9 @@ bindsym $mod+Shift+e exec"ibus emoji"
 #polybar launch
 #exec_always chmod +x polybar.sh
 #exec_always ./.config/i3/polybar.sh
+
+#ROCKET LAUNCH
+exec_always ./.config/i3/ssr.sh
 
 #vol and brightness
 bindsym XF86AudioRaiseVolume exec "amixer -D pulse sset Master '3%+'"
@@ -244,19 +248,20 @@ mode "save" {
 #screen shot
 	bindsym $mod+Shift+p exec "gnome-screenshot -a"
 
-		for_window[class="Gnome-terminal"] move container to workspace 🤖;workspace 🤖
-		for_window[class="netease-cloud-music"] move container to workspace 😎;workspace 😎
-		for_window[class="Google-chrome"] move container to workspace 🌐;workspace 🌐
-		for_window[class="Firefox"] move container to workspace 🌐;workspace 🌐
-		for_window[class="Wine"] move container to workspace 😎;workspace 😎
-		for_window[class="Nautilus"] move container to workspace 📁;workspace 📁
-		for_window [class="Atom"] move container to workspace 👾;workspace 👾
-		for_window[class="Eclipse"] move container to workspace 👾;workspace 👾
+		for_window[class="Gnome-terminal"] move container to workspace 1:;workspace 1:
+		for_window[class="netease-cloud-music"] move container to workspace 10:;workspace 10:
+		for_window[class="Google-chrome"] move container to workspace 2:;workspace 2:
+		for_window[class="Firefox"] move container to workspace 2:;workspace 2:
+		for_window[class="Wine"] move container to workspace 10:;workspace 10:
+		for_window[class="Nautilus"] move container to workspace 4:;workspace 4:
+		for_window [class="Atom"] move container to workspace 3:;workspace 3:
+		for_window[class="Eclipse"] move container to workspace 3:;workspace 3:
 
 bar {
-	#	status_command i3status -c ~/.config/i3/.i3status.conf
+	height 25
+	#status_command i3status -c ~/.config/i3/.i3status.conf
 	font pango:Inconsolata 10, FontAwesome 13,UbuntuMono Nerd Font Mono Regular 14
 	position top
 	workspace_buttons yes
-	status_command ~/bbstatus/bumblebee-status/bumblebee-status -m git github disk:root date time brightness amixer battery bluetooth -p disk.left-click="nautilus {instance} " time.format="%H:%M,%A" -t iceberg-dark-powerline
+	status_command ~/bbstatus/bumblebee-status/bumblebee-status -m  time date disk:root git github  brightness amixer battery bluetooth -p disk.left-click="nautilus {instance} " time.format="%H:%M,%A" -t iceberg-dark-powerline
 }
