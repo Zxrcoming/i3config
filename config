@@ -263,5 +263,5 @@ bar {
 	font pango:Inconsolata 10, FontAwesome 13,UbuntuMono Nerd Font Mono Regular 14
 	position top
 	workspace_buttons yes
-	status_command python3 ~/bbstatus/bumblebee-status/bumblebee-status -m  git  cpu brightness pasink bluetooth date time battery  -p   date.format="%Y-%m-%d (%A)" time.format="%H:%M" -t iceberg-dark-powerline -d --logfile ~/log
+	status_command python3 ~/bbstatus/bumblebee-status/bumblebee-status -m  git  brightness pasink bluetooth date time battery  -p interval=0 date.format="%Y-%m-%d (%A)" time.format="%H:%M" -t iceberg-dark-powerline -d --logfile ~/log
 }
