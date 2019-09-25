@@ -1,6 +1,6 @@
 set $mod Mod4
 
-font Noto Mono Regular
+font DroidSansMono Nerd Font Book
 
 
 floating_modifier $mod
@@ -17,7 +17,7 @@ exec_always fcitx
 bindsym $mod+Shift+t exec  "sh tim.sh -u %u"
 
 exec_always albert
-for_window [class=" "] border pixel 3
+for_window [class=" "] border pixel 2
 new_window 1pixel
 
 #exec my daily stuff
@@ -27,7 +27,8 @@ bindsym $mod+Shift+n  exec"netease-cloud-music"
 bindsym $mod+Shift+g  exec"google-chrome"
 bindsym $mod+g exec"gnome-control-center"
 bindsym $mod+r exec i3-sensible-terminal -e ranger
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec alacritty
+bindsym $mod+shift+Return exec gnome-terminal
 bindsym $mod+c exec eclipse
 bindsym $mod+n exec nautilus
 
@@ -113,7 +114,7 @@ bindsym $mod+Shift+0 move container to workspace 10:
 
 
 
-#hide_edge_borders both
+hide_edge_borders both
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -137,6 +138,8 @@ bindsym $mod+Shift+e exec"ibus emoji"
 #exec_always chmod +x polybar.sh
 #exec_always ./.config/i3/polybar.sh
 
+#tap-to-click
+exec_always ./.config/tap-to-click.sh
 #ROCKET LAUNCH
 exec_always ./.config/i3/ssr.sh
 
@@ -148,31 +151,9 @@ bindsym XF86AudioMicMute exec "amixer -D pulse sset Capture toggle"
 
 exec_always feh --bg-scale ~/wall.jpg
 
-bindsym XF86MonBrightnessUp exec xbacklight + 10
-bindsym XF86MonBrightnessDown exec xbacklight - 10
+bindsym XF86MonBrightnessUp exec light -A 5
+bindsym XF86MonBrightnessDown exec light -U 5
 
-#some colors
-set $based3    #002b36
-set $based2    #073642
-set $based1    #586e75
-set $based0    #657b83
-set $base0     #839496
-set $base1     #93a1a1
-set $base2     #eee8d5
-set $base3     #fdf6e3
-set $yellow    #b58900
-set $orange    #cb4b16
-set $red       #dc322f
-set $magenta   #d33682
-set $violet    #6c71c4
-set $blue      #268bd2
-set $cyan      #2aa198
-set $green     #859900
-
-#client.focused            $based3   $based2   $base3   $based3  $based2
-#client.focused_inactive   $based3   $based3   $base0   $based3  $based3
-#client.unfocused          $based3   $based3   $base0   $based3  $based3
-#client.urgent             $based3   $magenta  $base3   $based3  $magenta
 
 #setting gaps when boot
 gaps inner 13
@@ -194,8 +175,23 @@ exec_always /usr/lib/gnome-settings-daemon/gsd-xsettings
 exec_always gnome-power-manager
 exec --no-startup-id gnome-flashback
 
+#color
+
+# class                 border  backgr.    text
+## LIME GREEN ACTIVE BORDER
+client.focused			#21b4Db #00afda	 #484848
+## BLUE ACTIVE BORDER
+#client.focused			#2b6cc4 #2b6cc4	 #111111
+## RED ACTIVE BORDER
+#client.focused			#bf3f34 #bf3f34	 #111111
+## LIGHTER RED ACTIVE BORDER
+#client.focused			#cc5555 #cc5555  #111111
+client.unfocused		#444444 #444444  #00AFDA
+client.focused_inactive         #444444 #444444  #2c2c2f
+client.urgent			#383a3b #383a3b  #ee0000
+
 #i3lock
-bindsym $mod+Shift+s exec"i3lock -u -e -i ~/Pictures/newimage.png"
+bindsym $mod+Shift+s exec"cd ~/Downloads/i3lock-color && sh ~/.config/i3/lock.sh"
 
 #SCREEN SHOOT
 bindsym Print exec scrot '%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f ~/Pictures/'
@@ -249,6 +245,7 @@ mode "save" {
 	bindsym $mod+Shift+p exec "gnome-screenshot -a"
 
 		for_window[class="Gnome-terminal"] move container to workspace 1:;workspace 1:
+		for_window[class="Alacritty"] move container to wworkspace 1:;workspace 1:
 		for_window[class="netease-cloud-music"] move container to workspace 10:;workspace 10:
 		for_window[class="Google-chrome"] move container to workspace 2:;workspace 2:
 		for_window[class="Firefox"] move container to workspace 2:;workspace 2:
@@ -260,8 +257,8 @@ mode "save" {
 bar {
 	height 25
 	#status_command i3status -c ~/.config/i3/.i3status.conf
-	font pango:Inconsolata 10, FontAwesome 13,UbuntuMono Nerd Font Mono Regular 14
+	font pango:Inconsolata 10, FontAwesome 13,DroidSansMono Nerd Font Book 12
 	position top
 	workspace_buttons yes
-	status_command python3 ~/bbstatus/bumblebee-status/bumblebee-status -m hostname cpu brightness pasink date time battery  -p  date.format="%Y-%m-%d (%A)" hostname.left-click="gnome-terminal" time.format="%H:%M" -t greyish-powerline -d --logfile ~/log
+	status_command python3 ~/bbstatus/bumblebee-status/bumblebee-status -m hostname network_traffic cpu brightness pasink date time battery  -p  date.format="%Y-%m-%d (%A)" hostname.left-click="gnome-terminal" time.format="%H:%M" -t gruvbox-powerline -d --logfile ~/log
 }
