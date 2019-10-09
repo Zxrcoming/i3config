@@ -270,7 +270,5 @@ bar {
 	status_command python3 ~/bbstatus/bumblebee-status/bumblebee-status -m hostname network_traffic cpu brightness pasink date time battery  -p  date.format="%Y-%m-%d (%A)" hostname.left-click="alacritty" time.format="%H:%M" -t iceberg-rainbow -d --logfile ~/log
 	colors{
 		focused_workspace  #9BC360 #9BC360 #ffffff
-
-
 	}
 }
