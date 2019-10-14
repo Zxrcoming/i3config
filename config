@@ -12,9 +12,10 @@ exec_always nm-applet
 #exec my input method
 exec_always fcitx
 exec_always blueman-applet
+exec_always xmodmap .Xmodmap
 
 #TIM
-bindsym $mod+Shift+t exec  "sh tim.sh -u %u"
+bindsym $mod+Shift+t exec  "sh ~/.config/i3/tim.sh -u %u"
 
 exec_always albert
 for_window [class=" "] border pixel 2
@@ -153,7 +154,7 @@ bindsym XF86AudioLowerVolume exec "amixer -D pulse sset Master '3%-'"
 bindsym XF86AudioMute exec "amixer -D pulse set Master toggle"
 bindsym XF86AudioMicMute exec "amixer -D pulse sset Capture toggle"
 
-exec_always feh --bg-scale ~/wall.jpg
+exec_always feh --bg-scale ~/.config/i3/wall.jpg
 
 bindsym XF86MonBrightnessUp exec light -A 5
 bindsym XF86MonBrightnessDown exec light -U 5
@@ -267,7 +268,7 @@ bar {
 	workspace_buttons yes
 
 	#the powerful bumblebee
-	status_command python3 ~/bbstatus/bumblebee-status/bumblebee-status -m hostname network_traffic cpu brightness pasink date time battery  -p  date.format="%Y-%m-%d (%A)" hostname.left-click="alacritty" time.format="%H:%M" -t iceberg-rainbow -d --logfile ~/log
+	status_command python3 ~/Downloads/bbstatus/bumblebee-status/bumblebee-status -m hostname network_traffic cpu brightness pasink date time battery  -p  date.format="%Y-%m-%d (%A)" hostname.left-click="alacritty" time.format="%H:%M" -t iceberg-rainbow -d --logfile ~/log
 	colors{
 		focused_workspace  #9BC360 #9BC360 #ffffff
 	}
